@@ -6,7 +6,9 @@ import { Suspense } from 'react';
 const CustomerCardDemo = () => {
   try {
     // Try to import CustomerCard - this will work after Exercise 3
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const CustomerCard = require('../components/CustomerCard')?.default;
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const mockCustomers = require('../data/mock-customers')?.mockCustomers;
     
     if (CustomerCard && mockCustomers?.[0]) {
@@ -20,8 +22,8 @@ const CustomerCardDemo = () => {
         </div>
       );
     }
-  } catch (error) {
-    // Component doesn't exist yet
+  } catch {
+    // Component doesn't exist yet - silently continue
   }
   
   return (
