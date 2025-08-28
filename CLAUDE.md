@@ -194,3 +194,9 @@ git add -A && git commit -m "feat: implement [ComponentName] component"
 ```
 
 This workshop emphasizes learning **methodology** over task completion - focus on understanding the spec-driven development process and AI-assisted workflows rather than rushing through exercises.
+
+## Memory Notes
+
+### Workshop Workflow
+- Using @templates/spec-template.md stores generated specs in @specs/
+- Workshop uses Next.js 15, React 19, TypeScript, and Tailwind CSS
