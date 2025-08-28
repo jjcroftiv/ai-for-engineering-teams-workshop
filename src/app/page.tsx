@@ -1,34 +1,19 @@
 'use client';
 
 import { Suspense } from 'react';
+import { CustomerCard } from '@/components/CustomerCard';
+import { mockCustomers } from '@/data/mock-customers';
 
-// Dynamic component imports with error boundaries
+// Component showcase with proper imports
 const CustomerCardDemo = () => {
-  try {
-    // Try to import CustomerCard - this will work after Exercise 3
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const CustomerCard = require('../components/CustomerCard')?.default;
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const mockCustomers = require('../data/mock-customers')?.mockCustomers;
-    
-    if (CustomerCard && mockCustomers?.[0]) {
-      return (
-        <div className="space-y-4">
-          <p className="text-green-600 text-sm font-medium">✅ CustomerCard implemented!</p>
-          <div className="flex flex-wrap gap-4">
-            <CustomerCard customer={mockCustomers[0]} />
-            <CustomerCard customer={mockCustomers[1]} />
-          </div>
-        </div>
-      );
-    }
-  } catch {
-    // Component doesn't exist yet - silently continue
-  }
-  
   return (
-    <div className="text-gray-500 text-sm">
-      After Exercise 3, your CustomerCard components will appear here showing customer information with health scores.
+    <div className="space-y-4">
+      <p className="text-green-600 text-sm font-medium">✅ CustomerCard implemented!</p>
+      <div className="flex flex-wrap gap-4">
+        <CustomerCard customer={mockCustomers[0]} />
+        <CustomerCard customer={mockCustomers[1]} />
+        <CustomerCard customer={mockCustomers[2]} />
+      </div>
     </div>
   );
 };
