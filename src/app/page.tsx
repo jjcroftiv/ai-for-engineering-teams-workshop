@@ -1,19 +1,27 @@
 'use client';
 
-import { Suspense } from 'react';
-import { CustomerCard } from '@/components/CustomerCard';
-import { mockCustomers } from '@/data/mock-customers';
+import { Suspense, useState } from 'react';
+import { CustomerSelector } from '@/components/CustomerSelector';
+import { mockCustomers, Customer } from '@/data/mock-customers';
 
-// Component showcase with proper imports
-const CustomerCardDemo = () => {
+// Component showcase with CustomerSelector
+const CustomerSelectorDemo = () => {
+  const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
+
   return (
     <div className="space-y-4">
-      <p className="text-green-600 text-sm font-medium">✅ CustomerCard implemented!</p>
-      <div className="flex flex-wrap gap-4">
-        <CustomerCard customer={mockCustomers[0]} />
-        <CustomerCard customer={mockCustomers[1]} />
-        <CustomerCard customer={mockCustomers[2]} />
-      </div>
+      <p className="text-green-600 text-sm font-medium">✅ CustomerSelector implemented!</p>
+      <CustomerSelector 
+        customers={mockCustomers}
+        onCustomerSelect={setSelectedCustomer}
+        initialSelectedCustomer={null}
+      />
+      {selectedCustomer && (
+        <div className="mt-4 p-4 bg-blue-50 rounded-lg">
+          <h4 className="font-medium text-blue-900">Selected Customer:</h4>
+          <p className="text-blue-800">{selectedCustomer.name} - {selectedCustomer.company}</p>
+        </div>
+      )}
     </div>
   );
 };
@@ -47,7 +55,7 @@ export default function Home() {
         <div className="space-y-2 text-sm text-gray-600">
           <p>✅ Setup Complete - Next.js app is running</p>
           <p>✅ Exercise 3: CustomerCard component implemented</p>
-          <p className="text-gray-400">⏳ Exercise 4: CustomerSelector integration</p>
+          <p>✅ Exercise 4: CustomerSelector integration completed</p>
           <p className="text-gray-400">⏳ Exercise 5: Domain Health widget</p>
           <p className="text-gray-400">⏳ Exercise 9: Production-ready features</p>
         </div>
@@ -55,11 +63,11 @@ export default function Home() {
 
       {/* Component Showcase Area */}
       <div className="space-y-8">
-        {/* CustomerCard Section */}
+        {/* CustomerSelector Section */}
         <section className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">CustomerCard Component</h3>
+          <h3 className="text-lg font-semibold mb-4">CustomerSelector Component</h3>
           <Suspense fallback={<div className="text-gray-500">Loading...</div>}>
-            <CustomerCardDemo />
+            <CustomerSelectorDemo />
           </Suspense>
         </section>
 
